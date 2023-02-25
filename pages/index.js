@@ -1,20 +1,17 @@
-import { useAuth } from '../utils/context/authContext';
+import { Button, Card } from 'react-bootstrap';
 
 function Home() {
-  const { user } = useAuth();
-
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.displayName}! </h1>
-    </div>
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcSKj-rcawftngt1iMiQf7EFos3RHnmKN0yvD4BkXTJ6VVe8s6wwyLYLCBiOf9YfHQIZyotJRrk3RSYxIqA" />
+      <Card.Body>
+        <Card.Title>Monstera</Card.Title>
+        <Card.Text>
+          Plant Info
+        </Card.Text>
+        <Button variant="primary">View</Button>
+      </Card.Body>
+    </Card>
   );
 }
 
