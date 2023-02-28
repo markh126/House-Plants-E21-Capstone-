@@ -1,0 +1,35 @@
+{
+    "-NP96CHANnQyMPOelCwS": {
+      "firebaseKey": "-NP96CHANnQyMPOelCwS",
+      "name": "Annual Wallrocket",
+      "scientific_name": "Diplotaxis muralis (L.) DC.",
+      "image": "http://dummyimage.com/223x100.png/ff4444/ffffff",
+      "watered": true,
+      "propagation_instructions": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
+      "watering_frequency": "Monthly",
+      "light_requirement": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
+      "notes": ""
+    },
+    "-NP96CHEeL0VZINlmfLj": {
+      "firebaseKey": "-NP96CHEeL0VZINlmfLj",
+      "name": "Crisped Mock Vervain",
+      "scientific_name": "Glandularia incisa (Hook.) Troncoso",
+      "image": "http://dummyimage.com/104x100.png/dddddd/000000",
+      "watered": false,
+      "propagation_instructions": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
+      "watering_frequency": "Seldom",
+      "light_requirement": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
+      "notes": ""
+    },
+    "-NP96CHHtwEYUv1BSpzh": {
+      "firebaseKey": "-NP96CHHtwEYUv1BSpzh",
+      "name": "Peacock Flower",
+      "scientific_name": "Tigridia Juss.",
+      "image": "http://dummyimage.com/166x100.png/dddddd/000000",
+      "watered": true,
+      "propagation_instructions": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+      "watering_frequency": "Seldom",
+      "light_requirement": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum.",
+      "notes": ""
+    }
+  }
