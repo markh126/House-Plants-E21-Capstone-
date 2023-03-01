@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import { useAuth } from '../../utils/context/authContext';
+import { createPlant, updatePlant } from '../../api/plantsData';
 
 const initialState = {
   name: '',
   scientific_name: '',
   image: '',
+  watering_frequency: '',
+  light_requirement: '',
+  propagation_instructions: '',
+  notes: '',
   watered: false,
 };
 
-export default function PlantForm() {
+export default function PlantForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  // const router = useRouter();
+  const { user } = useAuth();
+  const router = useRouter();
   // const { firebaseKey } = router.query;
 
   const handleChange = (e) => {
@@ -23,9 +30,25 @@ export default function PlantForm() {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (obj.firebaseKey) {
+      updatePlant(formInput)
+        .then(() => router.push('/'));
+    } else {
+      const payload = {
+        ...formInput, uid: user.uid,
+      };
+      createPlant(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updatePlant(patchPayload).then(() => router.push('/'));
+      });
+    }
+  };
+
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h2 className="text-white mt-5">Plant</h2>
         <FloatingLabel className="mb-3" label="Name" controlId="plantName">
           <Form.Control
@@ -132,7 +155,12 @@ PlantForm.propTypes = {
     name: PropTypes.string,
     scientific_name: PropTypes.string,
     image: PropTypes.string,
+    watering_frequency: PropTypes.string,
+    light_requirement: PropTypes.string,
+    propagation_instructions: PropTypes.string,
+    notes: PropTypes.string,
     watered: PropTypes.bool,
+    firebaseKey: PropTypes.string,
   }),
 };
 
