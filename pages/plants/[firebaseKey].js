@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { getSinglePlant } from '../../api/plantsData';
 
 export default function ViewPlants() {
@@ -17,7 +17,7 @@ export default function ViewPlants() {
     <div>
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
-          <img src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
+          <Image src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
           <Link href={`/plants/edit/${plantDetails.firebaseKey}`} passHref>
             <Button variant="primary" className="m-2">EDIT</Button>
           </Link>
