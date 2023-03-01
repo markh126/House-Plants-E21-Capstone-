@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import PlantCard from '../components/plantCard';
 
 function Home() {
   return (
     <>
-      <Link className="btn btn-primary" href="/plants/new" role="button">New Plant</Link>
+      <Button href="/plants/new">Add a Plant</Button>
       <PlantCard />
     </>
   );
