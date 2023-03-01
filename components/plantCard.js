@@ -1,17 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
+import { deletePlant } from '../api/plantsData';
 
-export default function PlantCard() {
+export default function PlantCard({ plantObj, onUpdate }) {
+  const deleteThisPlant = () => {
+    if (window.confirm('Are you sure?')) {
+      deletePlant(plantObj.firebaseKey).then(() => onUpdate());
+    }
+  };
+
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcSKj-rcawftngt1iMiQf7EFos3RHnmKN0yvD4BkXTJ6VVe8s6wwyLYLCBiOf9YfHQIZyotJRrk3RSYxIqA" />
       <Card.Body>
-        <Card.Title>Monstera</Card.Title>
-        <Card.Text>
-          Plant Info
-        </Card.Text>
+        <Card.Img src={plantObj.image} />
+        <Card.Title>{plantObj.name}</Card.Title>
         <Button variant="primary">View</Button>
+        <Button onClick={deleteThisPlant}>Delete</Button>
       </Card.Body>
     </Card>
   );
 }
+
+PlantCard.propTypes = {
+  plantObj: PropTypes.shape({
+    name: PropTypes.string,
+    image: PropTypes.string,
+    firebaseKey: PropTypes.string,
+  }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+};
