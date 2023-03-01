@@ -2,12 +2,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
-import { getSinglePlant } from '../../api/plantsData';
+import { deletePlant, getSinglePlant } from '../../api/plantsData';
 
 export default function ViewPlants() {
   const [plantDetails, setPlantDetails] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
+
+  const deleteThisPlant = () => {
+    if (window.confirm('Are you sure?')) {
+      deletePlant(plantDetails.firebaseKey).then(() => router.push('/'));
+    }
+  };
 
   useEffect(() => {
     getSinglePlant(firebaseKey).then(setPlantDetails);
@@ -21,6 +27,7 @@ export default function ViewPlants() {
           <Link href={`/plants/edit/${plantDetails.firebaseKey}`} passHref>
             <Button variant="primary" className="m-2">EDIT</Button>
           </Link>
+          <Button onClick={deleteThisPlant}>Delete</Button>
         </div>
         <div className="text-white ms-5 details">
           <h2>Name: {plantDetails.name}
