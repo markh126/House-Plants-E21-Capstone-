@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
+import Link from 'next/link';
 import { deletePlant } from '../api/plantsData';
 
 export default function PlantCard({ plantObj, onUpdate }) {
@@ -15,7 +16,9 @@ export default function PlantCard({ plantObj, onUpdate }) {
       <Card.Body>
         <Card.Img src={plantObj.image} />
         <Card.Title>{plantObj.name}</Card.Title>
-        <Button variant="primary">View</Button>
+        <Link href={`/plants/${plantObj.firebaseKey}`} passHref>
+          <Button variant="primary" className="m-2">VIEW</Button>
+        </Link>
         <Button onClick={deleteThisPlant}>Delete</Button>
       </Card.Body>
     </Card>
