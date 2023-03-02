@@ -49,7 +49,7 @@ export default function PlantForm({ obj }) {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <h2 className="text-white mt-5">Plant</h2>
+        <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Plant</h2>
         <FloatingLabel className="mb-3" label="Name" controlId="plantName">
           <Form.Control
             type="text"
@@ -142,7 +142,7 @@ export default function PlantForm({ obj }) {
           }}
         />
 
-        <Button variant="primary" type="submit">Plant
+        <Button variant="primary" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Plant
         </Button>
 
       </Form>
