@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import { createPlant, updatePlant } from '../../api/plantsData';
+import { getHouses } from '../../api/houseData';
 
 const initialState = {
   name: '',
@@ -18,9 +19,15 @@ const initialState = {
 
 export default function PlantForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [, setHouses] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
   const { firebaseKey } = router.query;
+
+  useEffect(() => {
+    getHouses().then(setHouses);
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
