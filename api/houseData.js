@@ -70,10 +70,23 @@ const deleteHouse = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getHousePlants = (houseFirebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/plants.json?orderBy="house_id"&equalTo="${houseFirebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
   getHouses,
   getSingleHouse,
   createHouse,
   updateHouse,
   deleteHouse,
+  getHousePlants,
 };

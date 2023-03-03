@@ -21,6 +21,7 @@ PlantCard.propTypes = {
   plantObj: PropTypes.shape({
     name: PropTypes.string,
     image: PropTypes.string,
+    house_id: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
 };
