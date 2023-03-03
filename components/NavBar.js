@@ -1,10 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import { getHouses } from '../api/houseData';
 
 export default function NavBar() {
+  const [houses, setHouses] = useState([]);
+
+  const getAllHouses = () => {
+    getHouses().then(setHouses);
+  };
+
+  useEffect(() => {
+    getAllHouses();
+  }, [houses]);
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
@@ -32,11 +43,13 @@ export default function NavBar() {
               title="Houses"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="#action/3.1">House 1</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                House 2
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">House 3</NavDropdown.Item>
+              {houses.map((house) => (
+                <>
+                  <Link key={house.firebaseKey} passHref href={`/houses/${house.firebaseKey}`}>
+                    <NavDropdown.Item>{house.name}</NavDropdown.Item>
+                  </Link>
+                </>
+              ))}
               <NavDropdown.Divider />
               <NavDropdown.Item href="/houses/new">
                 Add a New House

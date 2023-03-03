@@ -20,7 +20,7 @@ export default function PlantForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
   const router = useRouter();
-  // const { firebaseKey } = router.query;
+  const { firebaseKey } = router.query;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +37,7 @@ export default function PlantForm({ obj }) {
         .then(() => router.push('/'));
     } else {
       const payload = {
-        ...formInput, uid: user.uid,
+        ...formInput, creator_id: user.uid, house_id: firebaseKey,
       };
       createPlant(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
