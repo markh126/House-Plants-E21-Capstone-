@@ -38,7 +38,7 @@ export default function NavBar() {
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">House 3</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item href="/houses/new">
                 Add a New House
               </NavDropdown.Item>
             </NavDropdown>
