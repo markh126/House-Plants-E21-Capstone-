@@ -34,11 +34,13 @@ export default function HouseForm({ obj }) {
         .then(() => router.push('/'));
     } else {
       const payload = {
-        ...formInput, uid: user.uid,
+        ...formInput, creator_id: user.uid,
       };
       createHouse(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateHouse(patchPayload).then(() => router.push('/'));
+        updateHouse(patchPayload).then(() => {
+          router.push(`/houses/${name}`);
+        });
       });
     }
   };

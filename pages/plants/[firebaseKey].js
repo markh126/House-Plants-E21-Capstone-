@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
 import { deletePlant, getSinglePlant } from '../../api/plantsData';
+import PlantForm from '../../components/forms/PlantForm';
 
 export default function ViewPlants() {
   const [plantDetails, setPlantDetails] = useState({});
@@ -24,9 +24,7 @@ export default function ViewPlants() {
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
           <Image src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
-          <Link href={`/plants/edit/${plantDetails.firebaseKey}`} passHref>
-            <Button variant="primary" className="m-2">EDIT</Button>
-          </Link>
+          <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={getSinglePlant} />
           <Button onClick={deleteThisPlant}>Delete</Button>
         </div>
         <div className="text-white ms-5 details">
