@@ -80,7 +80,6 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Plant</h2>
             <FloatingLabel className="mb-3" label="Name" controlId="plantName">
               <Form.Control
                 type="text"
@@ -159,7 +158,7 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
             </FloatingLabel>
 
             <Form.Check
-              className="text-white mb-3"
+              className="text-black mb-3"
               type="switch"
               id="watered"
               name="watered"
