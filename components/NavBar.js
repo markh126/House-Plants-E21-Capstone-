@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHouses } from '../api/houseData';
+import PlantForm from './forms/PlantForm';
+import { getPlants } from '../api/plantsData';
 
 export default function NavBar() {
   const [houses, setHouses] = useState([]);
@@ -12,9 +14,13 @@ export default function NavBar() {
     getHouses().then(setHouses);
   };
 
+  const getAllPlants = () => {
+    getPlants();
+  };
+
   useEffect(() => {
     getAllHouses();
-  }, [houses]);
+  }, []);
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -55,6 +61,8 @@ export default function NavBar() {
                 Add a New House
               </NavDropdown.Item>
             </NavDropdown>
+
+            <PlantForm onUpdate={getAllPlants} buttonTitle="Add a New Plant" />
 
             <button type="button" className="btn btn-danger" onClick={signOut}>
               Sign Out
