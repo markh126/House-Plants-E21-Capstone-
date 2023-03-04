@@ -46,7 +46,10 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updatePlant(formInput)
-        .then(() => router.push('/'));
+        .then(() => {
+          onUpdate();
+          handleClose();
+        });
     } else {
       const payload = {
         ...formInput, creator_id: user.uid, house_id: firebaseKey,
@@ -55,7 +58,7 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
         const patchPayload = { firebaseKey: name };
         updatePlant(patchPayload).then(() => {
           onUpdate();
-          setFormInput(initialState);
+          handleClose();
         });
       });
     }
@@ -98,7 +101,6 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
                 name="scientific_name"
                 value={formInput.scientific_name}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
 
@@ -120,7 +122,6 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
                 name="watering_frequency"
                 value={formInput.watering_frequency}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
 
@@ -131,7 +132,6 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
                 name="light_requirement"
                 value={formInput.light_requirement}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
 
@@ -142,7 +142,6 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
                 name="propagation_instructions"
                 value={formInput.propagation_instructions}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
 
@@ -153,7 +152,6 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
                 name="notes"
                 value={formInput.notes}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
 
@@ -203,5 +201,4 @@ PlantForm.propTypes = {
 PlantForm.defaultProps = {
   obj: initialState,
   onUpdate: () => {},
-
 };

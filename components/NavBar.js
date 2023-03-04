@@ -4,18 +4,12 @@ import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHouses } from '../api/houseData';
-import PlantForm from './forms/PlantForm';
-import { getPlants } from '../api/plantsData';
 
 export default function NavBar() {
   const [houses, setHouses] = useState([]);
 
   const getAllHouses = () => {
     getHouses().then(setHouses);
-  };
-
-  const getAllPlants = () => {
-    getPlants();
   };
 
   useEffect(() => {
@@ -50,19 +44,15 @@ export default function NavBar() {
               menuVariant="dark"
             >
               {houses.map((house) => (
-                <>
-                  <Link key={house.firebaseKey} passHref href={`/houses/${house.firebaseKey}`}>
-                    <NavDropdown.Item>{house.name}</NavDropdown.Item>
-                  </Link>
-                </>
+                <Link key={house.firebaseKey} passHref href={`/houses/${house.firebaseKey}`}>
+                  <NavDropdown.Item>{house.name}</NavDropdown.Item>
+                </Link>
               ))}
               <NavDropdown.Divider />
               <NavDropdown.Item href="/houses/new">
                 Add a New House
               </NavDropdown.Item>
             </NavDropdown>
-
-            <PlantForm onUpdate={getAllPlants} buttonTitle="New Plant" />
 
             <button type="button" className="btn btn-danger" onClick={signOut}>
               Sign Out
