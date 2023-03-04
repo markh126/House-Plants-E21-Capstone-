@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
-const getPlants = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/plants.json`, {
+const getPlants = (house_id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/plants.json?orderBy="house_id"&equalTo="${house_id}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
