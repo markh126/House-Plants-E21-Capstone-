@@ -62,7 +62,7 @@ export default function NavBar() {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <PlantForm onUpdate={getAllPlants} buttonTitle="Add a New Plant" />
+            <PlantForm onUpdate={getAllPlants} buttonTitle="New Plant" />
 
             <button type="button" className="btn btn-danger" onClick={signOut}>
               Sign Out
