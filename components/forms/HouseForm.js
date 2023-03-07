@@ -59,6 +59,17 @@ export default function HouseForm({ obj, onUpdate }) {
           />
         </FloatingLabel>
 
+        <FloatingLabel className="mb-3" label="City" controlId="houseCity">
+          <Form.Control
+            type="text"
+            placeholder="House City"
+            name="city"
+            value={formInput.city}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+
         <FloatingLabel className="mb-3" label="Description" controlId="houseDescription">
           <Form.Control
             type="text"
@@ -82,6 +93,7 @@ export default function HouseForm({ obj, onUpdate }) {
 HouseForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
+    city: PropTypes.string,
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
