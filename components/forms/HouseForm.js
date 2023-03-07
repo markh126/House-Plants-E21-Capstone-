@@ -9,6 +9,7 @@ import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
+  city: '',
   description: '',
 };
 
