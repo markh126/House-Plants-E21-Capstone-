@@ -21,6 +21,24 @@ const getPlants = (house_id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllUserPlants = (creator_id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/plants.json?orderBy="creator_id"&equalTo="${creator_id}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 const getSinglePlant = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/plants/${firebaseKey}.json`, {
     method: 'GET',
@@ -73,6 +91,7 @@ const deletePlant = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getPlants,
+  getAllUserPlants,
   getSinglePlant,
   createPlant,
   updatePlant,

@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import {
+  Button, FloatingLabel, Form,
+} from 'react-bootstrap';
 import { createHouse, updateHouse } from '../../api/houseData';
 import { useAuth } from '../../utils/context/authContext';
 
@@ -10,14 +12,10 @@ const initialState = {
   description: '',
 };
 
-export default function HouseForm({ obj }) {
+export default function HouseForm({ obj, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
   const router = useRouter();
-
-  useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
-  }, [obj.firebaseKey, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +29,9 @@ export default function HouseForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateHouse(formInput)
-        .then(() => router.push('/'));
+        .then(() => {
+          onUpdate();
+        });
     } else {
       const payload = {
         ...formInput, creator_id: user.uid,
@@ -48,7 +48,6 @@ export default function HouseForm({ obj }) {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} House </h2>
         <FloatingLabel className="mb-3" label="Name" controlId="houseName">
           <Form.Control
             type="text"
@@ -86,8 +85,10 @@ HouseForm.propTypes = {
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
+  onUpdate: PropTypes.func,
 };
 
 HouseForm.defaultProps = {
   obj: initialState,
+  onUpdate: () => {},
 };
