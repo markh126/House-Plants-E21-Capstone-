@@ -2,7 +2,7 @@ import Head from 'next/head';
 // import Link from 'next/link';
 import { useEffect, useState } from 'react';
 // import { Button } from 'react-bootstrap';
-import { getPlants } from '../api/plantsData';
+import { getAllUserPlants } from '../api/plantsData';
 import PlantCard from '../components/PlantCard';
 import { useAuth } from '../utils/context/authContext';
 
@@ -11,7 +11,7 @@ function Home() {
   const { user } = useAuth();
 
   const getAllThePlants = () => {
-    getPlants(user.uid).then(setPlants);
+    getAllUserPlants(user.uid).then(setPlants);
   };
 
   useEffect(() => {
