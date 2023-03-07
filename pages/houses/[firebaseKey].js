@@ -9,15 +9,15 @@ import PlantCard from '../../components/PlantCard';
 
 function ViewHouse() {
   const router = useRouter();
-  const [houseDetails, setHouselDetails] = useState({});
+  const [houseDetails, setHouseDetails] = useState({});
   const { firebaseKey } = router.query;
 
   const getAllThePlants = () => {
-    viewAllHousePlants(firebaseKey).then(setHouselDetails);
+    viewAllHousePlants(firebaseKey).then(setHouseDetails);
   };
 
   useEffect(() => {
-    viewAllHousePlants(firebaseKey).then(setHouselDetails);
+    viewAllHousePlants(firebaseKey).then(setHouseDetails);
   }, [firebaseKey]);
 
   return (

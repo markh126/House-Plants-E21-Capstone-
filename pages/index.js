@@ -1,21 +1,21 @@
 import Head from 'next/head';
 // import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { getHouses } from '../api/houseData';
+import HouseCard from '../components/HouseCard';
 // import { Button } from 'react-bootstrap';
-import { getAllUserPlants } from '../api/plantsData';
-import PlantCard from '../components/PlantCard';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
-  const [plants, setPlants] = useState([]);
+  const [houses, setHouses] = useState([]);
   const { user } = useAuth();
 
-  const getAllThePlants = () => {
-    getAllUserPlants(user.uid).then(setPlants);
+  const getAllTheHouses = () => {
+    getHouses(user.uid).then(setHouses);
   };
 
   useEffect(() => {
-    getAllThePlants();
+    getAllTheHouses();
   }, []);
 
   return (
@@ -24,8 +24,8 @@ function Home() {
         <title>Home Page</title>
       </Head>
       <div className="d-flex flex-wrap">
-        {plants.map((plant) => (
-          <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={getAllThePlants} />
+        {houses.map((house) => (
+          <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getHouses} />
         ))}
       </div>
     </>

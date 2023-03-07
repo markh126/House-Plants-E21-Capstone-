@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Alert, Button, Image } from 'react-bootstrap';
-import { viewPlantDetails } from '../../api/mergedData';
-import { deletePlant } from '../../api/plantsData';
+import { deletePlant, getSinglePlant } from '../../api/plantsData';
 import PlantForm from '../../components/forms/PlantForm';
 
 export default function ViewPlants() {
@@ -18,7 +17,7 @@ export default function ViewPlants() {
   };
 
   useEffect(() => {
-    viewPlantDetails(firebaseKey).then(setPlantDetails);
+    getSinglePlant(firebaseKey).then(setPlantDetails);
   }, [firebaseKey]);
 
   return (
@@ -37,14 +36,13 @@ export default function ViewPlants() {
         <div className="mt-5 d-flex flex-wrap">
           <div className="d-flex flex-column">
             <Image src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
-            <PlantForm buttonTitle="Edit" obj={plantDetails} />
+            <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={getSinglePlant} />
             <Button onClick={deleteThisPlant}>Delete</Button>
           </div>
           <div className="text-white ms-5 details">
-            <h1>Name: {plantDetails.name}
-            </h1>
-            <h2>Scientific Name: {plantDetails.scientific_name}</h2>
-            <h3>House: {plantDetails.houseObject?.name}</h3>
+            <h2>Name: {plantDetails.name}
+            </h2>
+            <h3>Scientific Name: {plantDetails.scientific_name}</h3>
             <hr />
             <p>Watering Frequency: {plantDetails.watering_frequency}</p>
             <p>Light Requirements: {plantDetails.light_requirement}</p>
