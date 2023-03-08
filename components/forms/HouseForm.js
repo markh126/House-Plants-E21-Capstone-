@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button, FloatingLabel, Form,
 } from 'react-bootstrap';
-import { createHouse, updateHouse } from '../../api/houseData';
+import { createHouse, getHousesForHome, updateHouse } from '../../api/houseData';
 import { useAuth } from '../../utils/context/authContext';
+import { HousesContext } from '../../utils/context/housesContext';
 
 const initialState = {
   name: '',
@@ -15,6 +16,7 @@ const initialState = {
 
 export default function HouseForm({ obj, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
+  const { setHouses } = useContext(HousesContext);
   const { user } = useAuth();
   const router = useRouter();
 
@@ -40,7 +42,10 @@ export default function HouseForm({ obj, onUpdate }) {
       createHouse(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateHouse(patchPayload).then(() => {
-          router.push(`/houses/${name}`);
+          getHousesForHome(user.uid).then((houses) => {
+            router.push(`/houses/${name}`);
+            setHouses(houses);
+          });
         });
       });
     }

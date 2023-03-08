@@ -16,6 +16,10 @@ export default function ViewPlants() {
     }
   };
 
+  const viewThePlant = () => {
+    getSinglePlant(firebaseKey).then(setPlantDetails);
+  };
+
   useEffect(() => {
     getSinglePlant(firebaseKey).then(setPlantDetails);
   }, [firebaseKey]);
@@ -36,7 +40,7 @@ export default function ViewPlants() {
         <div className="mt-5 d-flex flex-wrap">
           <div className="d-flex flex-column">
             <Image src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
-            <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={getSinglePlant} />
+            <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
             <Button onClick={deleteThisPlant}>Delete</Button>
           </div>
           <div className="text-white ms-5 details">

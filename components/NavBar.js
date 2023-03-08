@@ -1,23 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
-import { getHouses } from '../api/houseData';
-import { useAuth } from '../utils/context/authContext';
+import { getHousesForHome } from '../api/houseData';
 import SearchForm from './forms/SearchForm';
+import { useAuth } from '../utils/context/authContext';
+import { HousesContext } from '../utils/context/housesContext';
 
 export default function NavBar() {
-  const [houses, setHouses] = useState([]);
+  // const [houses, setHouses] = useState([]);
+  const { houses, setHouses } = useContext(HousesContext);
   const { user } = useAuth();
 
   const getAllHouses = () => {
-    getHouses(user.uid).then(setHouses);
+    getHousesForHome(user.uid).then(setHouses);
   };
 
   useEffect(() => {
     getAllHouses();
-  }, [houses]);
+  }, []);
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
