@@ -1,9 +1,9 @@
 import Head from 'next/head';
 // import Link from 'next/link';
 import { useEffect, useState } from 'react';
+// import { Button } from 'react-bootstrap';
 import { getHouses } from '../api/houseData';
 import HouseCard from '../components/HouseCard';
-// import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {

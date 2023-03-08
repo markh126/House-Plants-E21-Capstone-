@@ -4,17 +4,19 @@ import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHouses } from '../api/houseData';
+import { useAuth } from '../utils/context/authContext';
 
 export default function NavBar() {
   const [houses, setHouses] = useState([]);
+  const { user } = useAuth();
 
   const getAllHouses = () => {
-    getHouses().then(setHouses);
+    getHouses(user.uid).then(setHouses);
   };
 
   useEffect(() => {
     getAllHouses();
-  }, []);
+  }, [houses]);
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
