@@ -3,7 +3,25 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
-const getHouses = (creator_id) => new Promise((resolve, reject) => {
+const getHouses = () => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/houses.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+const getHousesForHome = (creator_id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/houses.json?orderBy="creator_id"&equalTo="${creator_id}"`, {
     method: 'GET',
     headers: {
@@ -85,6 +103,7 @@ const getHousePlants = (houseFirebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getHouses,
+  getHousesForHome,
   getSingleHouse,
   createHouse,
   updateHouse,
