@@ -4,17 +4,20 @@ import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHouses } from '../api/houseData';
+import { useAuth } from '../utils/context/authContext';
+import SearchForm from './forms/SearchForm';
 
 export default function NavBar() {
   const [houses, setHouses] = useState([]);
+  const { user } = useAuth();
 
   const getAllHouses = () => {
-    getHouses().then(setHouses);
+    getHouses(user.uid).then(setHouses);
   };
 
   useEffect(() => {
     getAllHouses();
-  }, []);
+  }, [houses]);
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -53,6 +56,8 @@ export default function NavBar() {
                 Add a New House
               </NavDropdown.Item>
             </NavDropdown>
+
+            <SearchForm />
 
             <button type="button" className="btn btn-danger" onClick={signOut}>
               Sign Out
