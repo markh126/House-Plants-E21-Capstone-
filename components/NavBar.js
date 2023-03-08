@@ -5,6 +5,7 @@ import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHouses } from '../api/houseData';
 import { useAuth } from '../utils/context/authContext';
+import SearchForm from './forms/SearchForm';
 
 export default function NavBar() {
   const [houses, setHouses] = useState([]);
@@ -55,6 +56,8 @@ export default function NavBar() {
                 Add a New House
               </NavDropdown.Item>
             </NavDropdown>
+
+            <SearchForm />
 
             <button type="button" className="btn btn-danger" onClick={signOut}>
               Sign Out
