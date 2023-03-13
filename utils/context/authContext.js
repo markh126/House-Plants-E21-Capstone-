@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { createUser, getUser, updateUser } from '../../api/userData';
 import { firebase } from '../client';
 
 const AuthContext = createContext();
@@ -22,9 +23,23 @@ const AuthProvider = (props) => {
   // an object/value = user is logged in
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((fbUser) => {
+    firebase.auth().onAuthStateChanged(async (fbUser) => {
       if (fbUser) {
-        setUser(fbUser);
+        await getUser(fbUser.uid).then(async (response) => {
+          if (!response) {
+            const userCreate = {
+              uid: fbUser.uid,
+              userName: fbUser.displayName,
+              userImage: fbUser.photoURL,
+            };
+            await createUser(userCreate).then(({ name }) => {
+              const patchPayload = { firebaseKey: name };
+              updateUser(patchPayload).then(() => setUser(fbUser));
+            });
+          } else {
+            setUser(fbUser);
+          }
+        });
       } else {
         setUser(false);
       }
