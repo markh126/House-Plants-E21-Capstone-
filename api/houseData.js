@@ -89,6 +89,18 @@ const deleteHouse = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteSingleHouse = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/houses/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application.json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const getHousePlants = (houseFirebaseKey) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/plants.json?orderBy="house_id"&equalTo="${houseFirebaseKey}"`, {
     method: 'GET',
@@ -108,5 +120,6 @@ export {
   createHouse,
   updateHouse,
   deleteHouse,
+  deleteSingleHouse,
   getHousePlants,
 };

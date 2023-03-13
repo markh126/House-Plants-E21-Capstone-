@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 // import { Button } from 'react-bootstrap';
-import viewAllHousePlants from '../../api/mergedData';
+import { viewAllHousePlants } from '../../api/mergedData';
 import PlantForm from '../../components/forms/PlantForm';
 import PlantCard from '../../components/PlantCard';
 
