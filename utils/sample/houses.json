@@ -1,0 +1,24 @@
+{
+    "-NQSAaAQka8h0EhvbQDp": {
+      "firebaseKey": "-NQSAaAQka8h0EhvbQDp",
+      "name": "Mark & Amanda's House",
+      "city": "Brentwood, TN",
+      "description": "",
+      "creator_id": "kxmH8UO6sZeJImP5lHv8pFwqXqv2"
+
+    },
+    "-NQSAaARjoh9xGgFaNLK": {
+      "firebaseKey": "-NQSAaARjoh9xGgFaNLK",
+      "name": "Pizza House",
+      "city": "Pizza Town, USA",
+      "description": "",
+      "creator_id": "kxmH8UO6sZeJImP5lHv8pFwqXqv2"
+    },
+    "-NQSAaARjoh9xGgFaNLL": {
+      "firebaseKey": "-NQSAaARjoh9xGgFaNLL",
+      "name": "Monster House",
+      "city": "Mayville, WI",
+      "description": "",
+      "creator_id": "0BGF3LElfWZ0PXTphMpfxaTfyGi1"
+    }
+  }
