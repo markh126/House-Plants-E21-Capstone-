@@ -7,7 +7,7 @@ import { useAuth } from '../../utils/context/authContext';
 import { getUsers } from '../../api/userData';
 import { createUserHouse, updateUserHouse } from '../../api/userHouses';
 
-export default function UserHouseForm({ obj, buttonTitle }) {
+export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
   const [houseUser, setHouseUser] = useState([]);
   const [formInput, setFormInput] = useState({});
   const { user } = useAuth();
@@ -42,6 +42,8 @@ export default function UserHouseForm({ obj, buttonTitle }) {
     createUserHouse(payload).then(({ name }) => {
       const patchPayload = { firebaseKey: name };
       updateUserHouse(patchPayload);
+      onUpdate();
+      handleClose();
     });
   };
 
@@ -99,8 +101,10 @@ UserHouseForm.propTypes = {
     uid: PropTypes.string,
   }),
   buttonTitle: PropTypes.string.isRequired,
+  onUpdate: PropTypes.func,
 };
 
 UserHouseForm.defaultProps = {
   obj: {},
+  onUpdate: () => {},
 };
