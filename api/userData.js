@@ -2,6 +2,23 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
+const getUsers = () => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
+
 const getUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
@@ -13,6 +30,23 @@ const getUser = (uid) => new Promise((resolve, reject) => {
     .then((data) => {
       if (data) {
         resolve(Object.values(data)[0]);
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
+
+const getUsersByUid = (uid) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
       } else {
         resolve([]);
       }
@@ -45,4 +79,10 @@ const updateUser = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { createUser, updateUser, getUser };
+export {
+  createUser,
+  updateUser,
+  getUser,
+  getUsers,
+  getUsersByUid,
+};

@@ -5,6 +5,7 @@ import { useContext, useEffect } from 'react';
 // import { Button } from 'react-bootstrap';
 import { getHousesForHome } from '../api/houseData';
 import HouseCard from '../components/HouseCard';
+import SearchForm from '../components/forms/SearchForm';
 import { useAuth } from '../utils/context/authContext';
 import { HousesContext } from '../utils/context/housesContext';
 
@@ -27,6 +28,7 @@ function Home() {
       <Head>
         <title>Home Page</title>
       </Head>
+      <SearchForm />
       <div className="d-flex flex-wrap">
         {houses.map((house) => (
           <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} />

@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHousesForHome } from '../api/houseData';
-import SearchForm from './forms/SearchForm';
 import { useAuth } from '../utils/context/authContext';
 import { HousesContext } from '../utils/context/housesContext';
 
@@ -59,11 +58,22 @@ export default function NavBar() {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <SearchForm />
-
-            <button type="button" className="btn btn-danger" onClick={signOut}>
-              Sign Out
-            </button>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              menuVariant="dark"
+            >
+              <Link passHref href="/profile">
+                <NavDropdown.Item>
+                  Profile
+                </NavDropdown.Item>
+              </Link>
+              <NavDropdown.Divider />
+              <NavDropdown.Item>
+                <button type="button" className="btn btn-danger" onClick={signOut}>
+                  Sign Out
+                </button>
+              </NavDropdown.Item>
+            </NavDropdown>
           </ul>
         </div>
       </div>

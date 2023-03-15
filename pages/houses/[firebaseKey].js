@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 // import { Button } from 'react-bootstrap';
 import { viewAllHousePlants } from '../../api/mergedData';
 import PlantForm from '../../components/forms/PlantForm';
+import UserHouseForm from '../../components/forms/UserHouseForm';
 import PlantCard from '../../components/PlantCard';
 
 function ViewHouse() {
@@ -26,6 +27,7 @@ function ViewHouse() {
         <title>{houseDetails.name}</title>
       </Head>
       <PlantForm onUpdate={getAllThePlants} buttonTitle="New Plant" />
+      <UserHouseForm buttonTitle="Add a User" />
       <div className="d-flex flex-wrap">
         {houseDetails.plants?.map((plant) => (
           <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={getAllThePlants} />

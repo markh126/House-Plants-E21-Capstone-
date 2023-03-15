@@ -52,6 +52,7 @@ export default function ViewPlants() {
             <p>Light Requirements: {plantDetails.light_requirement}</p>
             <p>Propagation Instructions: {plantDetails.propagation_instructions}</p>
             <hr />
+            <p>Last Watered: {plantDetails.watered}</p>
             <p>Notes: {plantDetails.notes}</p>
           </div>
         </div>
