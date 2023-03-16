@@ -21,8 +21,8 @@ const getPlants = (house_id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSearchedPlants = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/plants.json`, {
+const getSearchedPlants = (creator_id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/plants.json?orderBy="creator_id"&equalTo="${creator_id}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import { clientCredentials } from '../utils/client';
+import { getHouses } from './houseData';
 
 const dbUrl = clientCredentials.databaseURL;
 
@@ -45,8 +46,22 @@ const updateUserHouse = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const mergeHouseData = () => new Promise((resolve, reject) => {
+  Promise.all([getHouses(), getUserHouses()])
+    .then(([houses, userHousesJoin]) => {
+      const allHousesInfoArray = houses.map((house) => {
+        const houseRelationshipsArray = userHousesJoin.filter((uh) => uh.house_id === house.firebaseKey);
+
+        return { ...houses, count: houseRelationshipsArray.length };
+      });
+      resolve(allHousesInfoArray);
+      console.warn(allHousesInfoArray);
+    }).catch((error) => reject(error));
+});
+
 export {
   getUserHouses,
   createUserHouse,
   updateUserHouse,
+  mergeHouseData,
 };

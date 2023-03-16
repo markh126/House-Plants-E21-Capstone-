@@ -38,6 +38,7 @@ export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
     const payload = {
       ...formInput,
       house_id: firebaseKey,
+      house_name: houseUser.name,
     };
     createUserHouse(payload).then(({ name }) => {
       const patchPayload = { firebaseKey: name };

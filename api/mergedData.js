@@ -3,7 +3,7 @@ import {
 } from './houseData';
 import { deletePlant } from './plantsData';
 import { getUsers } from './userData';
-import getUserHouses from './userHouses';
+import { getUserHouses } from './userHouses';
 
 const viewAllHousePlants = (houseFirebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleHouse(houseFirebaseKey),
@@ -35,6 +35,7 @@ const housesWithUsers = () => new Promise((resolve, reject) => {
         return { ...house, users: userInfoArray };
       });
       resolve(allHousesInfoArray);
+      console.warn(allHousesInfoArray);
     }).catch((error) => reject(error));
 });
 
@@ -48,9 +49,10 @@ const usersWithHouses = () => new Promise((resolve, reject) => {
         const houseInfoArray = userRelationshipsArray
           .map((userRelationship) => houses.find((house) => house.firebaseKey === userRelationship.house_id));
 
-        return { ...users[0], houses: houseInfoArray };
+        return { ...users, houses: houseInfoArray };
       });
       resolve(allUsersInfoArray);
+      console.warn(allUsersInfoArray);
     }).catch((error) => reject(error));
 });
 
