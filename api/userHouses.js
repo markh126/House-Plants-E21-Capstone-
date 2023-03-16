@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { clientCredentials } from '../utils/client';
 import { getHouses } from './houseData';
 
@@ -5,6 +6,41 @@ const dbUrl = clientCredentials.databaseURL;
 
 const getUserHouses = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/user_houses.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
+
+const getUserHousesByUid = (uid) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/user_houses.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+const getUserHousesByHouseId = (house_id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/user_houses.json?orderBy="house_id"&equalTo="${house_id}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -64,4 +100,6 @@ export {
   createUserHouse,
   updateUserHouse,
   mergeHouseData,
+  getUserHousesByHouseId,
+  getUserHousesByUid,
 };

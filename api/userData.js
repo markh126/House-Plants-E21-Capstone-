@@ -19,6 +19,23 @@ const getUsers = () => new Promise((resolve, reject) => {
     }).catch(reject);
 });
 
+const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
+
 const getUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
@@ -85,4 +102,5 @@ export {
   getUser,
   getUsers,
   getUsersByUid,
+  getSingleUser,
 };

@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import Link from 'next/link';
 import { useContext, useEffect } from 'react';
-// import { Button } from 'react-bootstrap';
 import { getHousesForHome } from '../api/houseData';
 import HouseCard from '../components/HouseCard';
 import SearchForm from '../components/forms/SearchForm';

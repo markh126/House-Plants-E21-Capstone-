@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHousesForHome } from '../api/houseData';
 import { useAuth } from '../utils/context/authContext';
-import { HousesContext } from '../utils/context/housesContext';
+// import { HousesContext } from '../utils/context/housesContext';
 
 export default function NavBar() {
-  const { houses, setHouses } = useContext(HousesContext);
+  // const { houses, setHouses } = useContext(HousesContext);
   const { user } = useAuth();
 
   const getAllHouses = () => {
-    getHousesForHome(user.uid).then(setHouses);
+    getHousesForHome(user.uid);
   };
 
   useEffect(() => {
@@ -41,22 +41,13 @@ export default function NavBar() {
                   </a>
                 </Link>
               </li>
-
-              <NavDropdown
-                id="nav-dropdown-dark-example"
-                title="Houses"
-                menuVariant="dark"
-              >
-                {houses.map((house) => (
-                  <Link key={house.firebaseKey} passHref href={`/houses/${house.firebaseKey}`}>
-                    <NavDropdown.Item>{house.name}</NavDropdown.Item>
-                  </Link>
-                ))}
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/houses/new">
-                  Add a New House
-                </NavDropdown.Item>
-              </NavDropdown>
+              <li className="nav-item">
+                <Link href="/houses/new">
+                  <a className="nav-link">
+                    Add a New House
+                  </a>
+                </Link>
+              </li>
 
               <NavDropdown
                 id="nav-dropdown-dark-example"
@@ -65,6 +56,11 @@ export default function NavBar() {
                 <Link passHref href="/profile">
                   <NavDropdown.Item>
                     Profile
+                  </NavDropdown.Item>
+                </Link>
+                <Link passHref href="/VisitHouses">
+                  <NavDropdown.Item>
+                    Visiting Houses
                   </NavDropdown.Item>
                 </Link>
                 <NavDropdown.Divider />
