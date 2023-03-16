@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import HouseCard from '../components/HouseCard';
 import SearchForm from '../components/forms/SearchForm';
@@ -9,11 +9,11 @@ import { usersWithHouses } from '../api/mergedData';
 import { getHousesForHome } from '../api/houseData';
 
 function VisitHouses() {
-  const { houses, setHouses } = useContext(HousesContext);
+  const { /* houses, */ setHouses } = useContext(HousesContext);
   const [visitedHouses, setVisitedHouses] = useState([]);
   const { user } = useAuth();
-  const router = useRouter();
-  const { firebaseKey } = router.query;
+  // const router = useRouter();
+  // const { firebaseKey } = router.query;
 
   const getAllTheHouses = () => {
     usersWithHouses(user.uid).then((userObj) => {
