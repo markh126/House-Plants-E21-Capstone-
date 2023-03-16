@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   deleteSingleHouse, getHousePlants, getHouses, getSingleHouse,
 } from './houseData';
@@ -29,8 +30,12 @@ const housesWithUsers = () => new Promise((resolve, reject) => {
         const houseRelationshipsArray = userHousesJoin
           .filter((uh) => uh.house_id === house.firebaseKey);
 
+        // console.warn(houseRelationshipsArray);
+
         const userInfoArray = houseRelationshipsArray
           .map((houseRelationship) => users.find((user) => user.uid === houseRelationship.uid));
+
+        // console.warn(userInfoArray);
 
         return { ...house, users: userInfoArray };
       });
@@ -46,13 +51,17 @@ const usersWithHouses = () => new Promise((resolve, reject) => {
         const userRelationshipsArray = userHousesJoin
           .filter((uh) => uh.uid === user.uid);
 
+        // console.warn(userRelationshipsArray);
+
         const houseInfoArray = userRelationshipsArray
           .map((userRelationship) => houses.find((house) => house.firebaseKey === userRelationship.house_id));
+
+        // console.warn(houseInfoArray);
 
         return { ...users, houses: houseInfoArray };
       });
       resolve(allUsersInfoArray);
-      console.warn(allUsersInfoArray);
+      // console.warn(allUsersInfoArray);
     }).catch((error) => reject(error));
 });
 
