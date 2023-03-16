@@ -3,17 +3,16 @@ import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
-// import { getHousesForHome } from '../api/houseData';
+import { getHousesForHome } from '../api/houseData';
 import { useAuth } from '../utils/context/authContext';
 import { HousesContext } from '../utils/context/housesContext';
-import { getUserHouses } from '../api/userHouses';
 
 export default function NavBar() {
   const { houses, setHouses } = useContext(HousesContext);
   const { user } = useAuth();
 
   const getAllHouses = () => {
-    getUserHouses(user.uid).then(setHouses);
+    getHousesForHome(user.uid).then(setHouses);
   };
 
   useEffect(() => {
