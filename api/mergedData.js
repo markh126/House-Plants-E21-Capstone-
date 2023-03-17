@@ -39,7 +39,7 @@ const housesWithUsers = () => new Promise((resolve, reject) => {
 
         return { ...house, users: userInfoArray };
       });
-      resolve(allHousesInfoArray);
+      // resolve(allHousesInfoArray);
       console.warn(allHousesInfoArray);
     }).catch((error) => reject(error));
 });
@@ -58,7 +58,7 @@ const usersWithHouses = () => new Promise((resolve, reject) => {
 
         // console.warn(houseInfoArray);
 
-        return { ...users, houses: houseInfoArray };
+        return { ...user, houses: houseInfoArray };
       });
       resolve(allUsersInfoArray);
       // console.warn(allUsersInfoArray);

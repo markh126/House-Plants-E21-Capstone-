@@ -6,6 +6,7 @@ import HouseCard from '../components/HouseCard';
 import SearchForm from '../components/forms/SearchForm';
 import { useAuth } from '../utils/context/authContext';
 import { HousesContext } from '../utils/context/housesContext';
+import { usersWithHouses } from '../api/mergedData';
 
 function Home() {
   const { houses, setHouses } = useContext(HousesContext);
@@ -16,6 +17,8 @@ function Home() {
   const getAllTheHouses = () => {
     getHousesForHome(user.uid).then(setHouses);
   };
+
+  usersWithHouses();
 
   useEffect(() => {
     getAllTheHouses();
