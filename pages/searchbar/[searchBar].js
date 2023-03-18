@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getSearchedPlants } from '../../api/plantsData';
@@ -14,7 +15,6 @@ export default function SearchBar() {
     getSearchedPlants(user.uid).then((plants) => {
       const filteredPlants = plants.filter((plant) => plant.name.toLowerCase().includes(searchBar.toLowerCase()));
       setSearchPlants(filteredPlants);
-      console.warn(filteredPlants);
     });
   };
 
@@ -26,8 +26,13 @@ export default function SearchBar() {
   }, [searchBar]);
 
   return (
-    <div>
-      {searchPlants.map((plant) => <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={searchAllPlants} />)}
-    </div>
+    <>
+      <Head>
+        <title>Search Results</title>
+      </Head>
+      <div>
+        {searchPlants.map((plant) => <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={searchAllPlants} />)}
+      </div>
+    </>
   );
 }

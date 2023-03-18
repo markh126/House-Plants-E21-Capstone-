@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Alert, Button, Image } from 'react-bootstrap';
@@ -28,6 +29,10 @@ export default function ViewPlants() {
 
   return (
     <>
+      <Head>
+        <title>{plantDetails.name}</title>
+      </Head>
+
       <Alert show={show} variant="success">
         <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
         <hr />
