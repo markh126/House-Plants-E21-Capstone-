@@ -51,17 +51,12 @@ const usersWithHouses = () => new Promise((resolve, reject) => {
         const userRelationshipsArray = userHousesJoin
           .filter((uh) => uh.uid === user.uid);
 
-        // console.warn(userRelationshipsArray);
-
         const houseInfoArray = userRelationshipsArray
           .map((userRelationship) => houses.find((house) => house.firebaseKey === userRelationship.house_id));
-
-        // console.warn(houseInfoArray);
 
         return { ...user, houses: houseInfoArray };
       });
       resolve(allUsersInfoArray);
-      // console.warn(allUsersInfoArray);
     }).catch((error) => reject(error));
 });
 

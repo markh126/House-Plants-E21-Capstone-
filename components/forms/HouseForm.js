@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button, FloatingLabel, Form,
@@ -14,11 +14,15 @@ const initialState = {
   description: '',
 };
 
-export default function HouseForm({ obj, onUpdate }) {
+export default function HouseForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const { setHouses } = useContext(HousesContext);
   const { user } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,9 +36,7 @@ export default function HouseForm({ obj, onUpdate }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateHouse(formInput)
-        .then(() => {
-          onUpdate();
-        });
+        .then(() => router.push(`/houses/${obj.firebaseKey}`));
     } else {
       const payload = {
         ...formInput, creator_id: user.uid,
@@ -103,10 +105,10 @@ HouseForm.propTypes = {
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
-  onUpdate: PropTypes.func,
+  // onUpdate: PropTypes.func,
 };
 
 HouseForm.defaultProps = {
   obj: initialState,
-  onUpdate: () => {},
+  // onUpdate: () => {},
 };

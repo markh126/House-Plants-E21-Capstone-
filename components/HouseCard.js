@@ -22,7 +22,12 @@ export default function HouseCard({ houseObj, onUpdate, isMine }) {
         </Link>
         {isMine
           ? (
-            <Button onClick={deleteThisHouse}>Delete</Button>
+            <>
+              <Link href={`/houses/edit/${houseObj.firebaseKey}`} passHref>
+                <Button>EDIT</Button>
+              </Link>
+              <Button onClick={deleteThisHouse}>Delete</Button>
+            </>
           )
           : ('')}
       </Card.Body>
