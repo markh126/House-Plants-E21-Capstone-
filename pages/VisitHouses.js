@@ -21,11 +21,11 @@ function VisitHouses() {
   useEffect(() => {
     const userHouse = houses.find((h) => h.uid === user.uid);
     setCurrentUserHouse(userHouse);
-  }, [houses]);
+  }, [houses, user]);
 
   useEffect(() => {
     getAllTheHouses();
-  }, []);
+  }, [houses, user]);
 
   return (
     <>

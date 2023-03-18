@@ -23,16 +23,22 @@ export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
     getUsers(user.uid).then(setHouseUser);
   };
 
-  const getVisitedHomes = () => {
-    getUserHousesByHouseId(firebaseKey).then(() => setVisitedHouses);
-    // setVisitedUserIds(visitedHouses.map((h) => h.uid));
-    console.warn(visitedHouses);
-  };
+  // const getVisitedHomes = () => {
+  //   getUserHousesByHouseId(firebaseKey).then(() => setVisitedHouses);
+  //   // setVisitedUserIds(visitedHouses.map((h) => h.uid));
+  //   console.log(visitedHouses);
+  // };
+
+  useEffect(() => {
+    getUserHousesByHouseId(firebaseKey).then(setVisitedHouses);
+  }, [firebaseKey]);
+
+  console.warn(visitedHouses);
 
   useEffect(() => {
     getUsersInHouses();
-    getVisitedHomes();
-  }, [user, firebaseKey]);
+    // getVisitedHomes();
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
