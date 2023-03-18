@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import Link from 'next/link';
 import { deleteHousesAndPlants } from '../api/mergedData';
 
-export default function HouseCard({ houseObj, onUpdate }) {
+export default function HouseCard({ houseObj, onUpdate, isMine }) {
   const deleteThisHouse = () => {
     if (window.confirm('Are you sure?')) {
       deleteHousesAndPlants(houseObj.firebaseKey).then(() => onUpdate());
@@ -20,7 +20,11 @@ export default function HouseCard({ houseObj, onUpdate }) {
         <Link href={`/houses/${houseObj.firebaseKey}`} passHref>
           <Button variant="primary" className="m-2">View</Button>
         </Link>
-        <Button onClick={deleteThisHouse}>Delete</Button>
+        {isMine
+          ? (
+            <Button onClick={deleteThisHouse}>Delete</Button>
+          )
+          : ('')}
       </Card.Body>
     </Card>
   );
@@ -34,4 +38,5 @@ HouseCard.propTypes = {
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  isMine: PropTypes.bool.isRequired,
 };
