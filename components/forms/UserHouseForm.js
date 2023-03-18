@@ -26,6 +26,7 @@ export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
   const getVisitedHomes = () => {
     getUserHousesByHouseId(firebaseKey).then(() => setVisitedHouses);
     // setVisitedUserIds(visitedHouses.map((h) => h.uid));
+    console.warn(visitedHouses);
   };
 
   useEffect(() => {
