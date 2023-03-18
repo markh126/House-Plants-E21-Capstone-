@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -40,6 +41,18 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(imageFile);
+    reader.onload = () => {
+      setFormInput((prevState) => ({
+        ...prevState,
+        image: reader.result,
+      }));
+    };
   };
 
   const handleSubmit = (e) => {
@@ -104,15 +117,20 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
               />
             </FloatingLabel>
 
-            <FloatingLabel className="mb-3" label="Image" controlId="plantImage">
+            <FloatingLabel className="mb-3" controlId="plantImage">
               <Form.Control
-                type="url"
-                placeholder="Image Url"
-                name="image"
-                value={formInput.image}
-                onChange={handleChange}
-                required
+                type="file"
+                placeholder="Upload an Image"
+                accept="image/*"
+                onChange={handleImageChange}
               />
+              {formInput.image && (
+                <img
+                  src={formInput.image}
+                  alt="profile"
+                  style={{ height: '250px', width: '250px' }}
+                />
+              )}
             </FloatingLabel>
 
             <FloatingLabel className="mb-3" label="Watering Frequency" controlId="wateringFrequency">

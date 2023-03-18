@@ -6,7 +6,6 @@ import HouseCard from '../components/HouseCard';
 import SearchForm from '../components/forms/SearchForm';
 import { useAuth } from '../utils/context/authContext';
 import { HousesContext } from '../utils/context/housesContext';
-import { usersWithHouses } from '../api/mergedData';
 
 function Home() {
   const { houses, setHouses } = useContext(HousesContext);
@@ -14,15 +13,13 @@ function Home() {
   const router = useRouter();
   const { firebaseKey } = router.query;
 
-  const getAllTheHouses = () => {
-    getHousesForHome(user.uid).then(setHouses);
-  };
-
-  usersWithHouses();
+  // const getAllTheHouses = () => {
+  //   getHousesForHome(user.uid).then(setHouses);
+  // };
 
   useEffect(() => {
-    getAllTheHouses();
-  }, [firebaseKey]);
+    getHousesForHome(user.uid).then(setHouses);
+  }, [firebaseKey, user]);
 
   return (
     <>
@@ -32,7 +29,7 @@ function Home() {
       <SearchForm />
       <div className="d-flex flex-wrap">
         {houses.map((house) => (
-          <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} isMine={house.creator_id === user.uid} />
+          <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getHousesForHome} isMine={house.creator_id === user.uid} />
         ))}
       </div>
     </>
