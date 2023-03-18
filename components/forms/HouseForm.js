@@ -36,7 +36,7 @@ export default function HouseForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateHouse(formInput)
-        .then(() => router.push(`/houses/${obj.firebaseKey}`));
+        .then(() => router.push('/'));
     } else {
       const payload = {
         ...formInput, creator_id: user.uid,
