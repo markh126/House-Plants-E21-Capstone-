@@ -32,7 +32,7 @@ function Home() {
       <SearchForm />
       <div className="d-flex flex-wrap">
         {houses.map((house) => (
-          <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} />
+          <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} isMine={house.creator_id === user.uid} />
         ))}
       </div>
     </>

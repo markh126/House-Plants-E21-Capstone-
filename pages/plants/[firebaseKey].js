@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Button, Image } from 'react-bootstrap';
 import { deletePlant, getSinglePlant } from '../../api/plantsData';
 import PlantForm from '../../components/forms/PlantForm';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewPlants() {
   const [plantDetails, setPlantDetails] = useState({});
   const [show, setShow] = useState(true);
+  const { user } = useAuth();
   const router = useRouter();
   const { firebaseKey } = router.query;
 
@@ -40,8 +42,14 @@ export default function ViewPlants() {
         <div className="mt-5 d-flex flex-wrap">
           <div className="d-flex flex-column">
             <Image src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
-            <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
-            <Button onClick={deleteThisPlant}>Delete</Button>
+            {(plantDetails.creator_id === user.uid)
+              ? (
+                <>
+                  <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
+                  <Button onClick={deleteThisPlant}>Delete</Button>
+                </>
+              )
+              : ('')}
           </div>
           <div className="text-white ms-5 details">
             <h2>Name: {plantDetails.name}
