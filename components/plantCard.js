@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import Link from 'next/link';
 
 export default function PlantCard({ plantObj }) {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', borderRadius: '25px' }}>
       <Card.Body>
-        <Card.Img src={plantObj.image} />
-        <Card.Title>{plantObj.name}</Card.Title>
-        <Link href={`/plants/${plantObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">VIEW</Button>
-        </Link>
+        <Card.Img src={plantObj.image} style={{ borderRadius: '10px', width: '16rem', height: '20rem' }} />
+        <Card.Title>
+          <Link href={`/plants/${plantObj.firebaseKey}`}>{plantObj.name}</Link>
+        </Card.Title>
       </Card.Body>
     </Card>
   );

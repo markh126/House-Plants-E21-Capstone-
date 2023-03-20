@@ -117,22 +117,6 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
               />
             </FloatingLabel>
 
-            <FloatingLabel className="mb-3" controlId="plantImage">
-              <Form.Control
-                type="file"
-                placeholder="Upload an Image"
-                accept="image/*"
-                onChange={handleImageChange}
-              />
-              {formInput.image && (
-                <img
-                  src={formInput.image}
-                  alt="profile"
-                  style={{ height: '250px', width: '250px' }}
-                />
-              )}
-            </FloatingLabel>
-
             <FloatingLabel className="mb-3" label="Watering Frequency" controlId="wateringFrequency">
               <Form.Control
                 type="text"
@@ -171,6 +155,22 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
                 value={formInput.notes}
                 onChange={handleChange}
               />
+            </FloatingLabel>
+
+            <FloatingLabel className="mb-3" controlId="plantImage">
+              <Form.Control
+                type="file"
+                placeholder="Upload an Image"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+              {formInput.image && (
+                <img
+                  src={formInput.image}
+                  alt="profile"
+                  style={{ height: '250px', width: '250px' }}
+                />
+              )}
             </FloatingLabel>
 
             <Form.Check
