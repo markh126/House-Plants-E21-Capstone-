@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import { signIn } from '../utils/auth';
 
@@ -12,9 +13,8 @@ function Signin() {
         margin: '0 auto',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signIn}>
+      <h1 className="welcome">Welcome to House Plants!</h1>
+      <button type="button" className="sign-in-btn btn btn-lg copy-btn" onClick={signIn}>
         Sign In
       </button>
     </div>

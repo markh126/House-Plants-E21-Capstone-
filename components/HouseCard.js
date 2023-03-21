@@ -12,7 +12,7 @@ export default function HouseCard({ houseObj, onUpdate, isMine }) {
   };
 
   return (
-    <Card style={{ width: '18rem', borderRadius: '25px' }}>
+    <Card style={{ width: '18rem', borderRadius: '25px', marginTop: '50px' }}>
       <Card.Body>
         <Card.Title>{houseObj.name}</Card.Title>
         <Card.Subtitle>{houseObj.city}</Card.Subtitle>
