@@ -5,6 +5,7 @@ import { NavDropdown } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { getHousesForHome } from '../api/houseData';
 import { useAuth } from '../utils/context/authContext';
+import SearchForm from './forms/SearchForm';
 // import { HousesContext } from '../utils/context/housesContext';
 
 export default function NavBar() {
@@ -49,8 +50,11 @@ export default function NavBar() {
                 </Link>
               </li>
 
+              <SearchForm />
+
               <NavDropdown
-                id="nav-dropdown-dark-example"
+                id="nav-dropdown"
+                className="toggle"
                 menuVariant="dark"
               >
                 <Link passHref href="/profile">
