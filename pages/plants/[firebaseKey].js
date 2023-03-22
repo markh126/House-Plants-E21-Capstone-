@@ -33,25 +33,45 @@ export default function ViewPlants() {
         <title>{plantDetails.name}</title>
       </Head>
 
-      <Alert show={show} variant="success">
-        <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShow(false)} variant="outline-success">
-            Close
-          </Button>
-        </div>
-      </Alert>
+      <div className="plant-alert mt-5 flex-wrap d-flex flex-column">
+        <Alert show={show} variant="success">
+          <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <Button onClick={() => setShow(false)} variant="outline-success">
+              Close
+            </Button>
+          </div>
+        </Alert>
+      </div>
 
       <div>
         <div className="mt-5 d-flex flex-wrap">
           <div className="d-flex flex-column">
-            <Image src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
+            <Image className="plant-image" src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px', borderRadius: '25px' }} />
             {(plantDetails.creator_id === user.uid)
               ? (
                 <>
-                  <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
-                  <Button onClick={deleteThisPlant}>Delete</Button>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginTop: '10px',
+                  }}
+                  >
+                    <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
+                    <Button
+                      style={{
+                        backgroundColor: 'red',
+                        borderColor: 'red',
+                        borderRadius: '20px',
+                        fontSize: '12px',
+                        padding: '10px 22px',
+                        width: '150px',
+                      }}
+                      onClick={deleteThisPlant}
+                    >Delete
+                    </Button>
+                  </div>
                 </>
               )
               : ('')}
@@ -65,7 +85,7 @@ export default function ViewPlants() {
             <p>Light Requirements: {plantDetails.light_requirement}</p>
             <p>Propagation Instructions: {plantDetails.propagation_instructions}</p>
             <hr />
-            <p>Last Watered: {plantDetails.watered}</p>
+            <p>Last Watered: {plantDetails.last_watered}</p>
             <p>Notes: {plantDetails.notes}</p>
           </div>
         </div>

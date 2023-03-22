@@ -5,14 +5,16 @@ import Link from 'next/link';
 
 export default function PlantCard({ plantObj }) {
   return (
-    <Card style={{ width: '18rem', borderRadius: '25px' }}>
-      <Card.Body>
-        <Card.Img src={plantObj.image} style={{ borderRadius: '10px', width: '16rem', height: '20rem' }} />
-        <Card.Title>
-          <Link href={`/plants/${plantObj.firebaseKey}`}>{plantObj.name}</Link>
-        </Card.Title>
-      </Card.Body>
-    </Card>
+    <div className="plant-card">
+      <Card className="content" style={{ width: '300px', textAlign: 'center' }}>
+        <Card.Body className="front">
+          <Card.Img src={plantObj.image} style={{ borderRadius: '10px', width: '16rem', height: '20rem' }} />
+          <Card.Title>
+            <Link href={`/plants/${plantObj.firebaseKey}`}>{plantObj.name}</Link>
+          </Card.Title>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 
