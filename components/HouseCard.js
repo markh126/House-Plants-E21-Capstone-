@@ -14,22 +14,57 @@ export default function HouseCard({ houseObj, onUpdate, isMine }) {
   return (
     <Card style={{ width: '18rem', borderRadius: '25px', marginTop: '50px' }}>
       <Card.Body>
-        <Card.Title>{houseObj.name}</Card.Title>
+        <Card.Title>
+          <Link href={`/houses/${houseObj.firebaseKey}`}>
+            {houseObj.name}
+          </Link>
+        </Card.Title>
         <Card.Subtitle>{houseObj.city}</Card.Subtitle>
         <Card.Body>{houseObj.description}</Card.Body>
-        <Link href={`/houses/${houseObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">View</Button>
-        </Link>
-        {isMine
-          ? (
-            <>
-              <Link href={`/houses/edit/${houseObj.firebaseKey}`} passHref>
-                <Button>EDIT</Button>
-              </Link>
-              <Button onClick={deleteThisHouse}>Delete</Button>
-            </>
-          )
-          : ('')}
+        <hr className="solid" />
+        <div
+          className="house-btns"
+        >
+          {isMine
+            ? (
+              <>
+                <Link href={`/houses/edit/${houseObj.firebaseKey}`} passHref>
+                  <Button
+                    style={{
+                      backgroundColor: 'green',
+                      borderColor: 'green',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      padding: '10px 22px',
+                      width: '75px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                    className="m-2"
+                  >Edit
+                  </Button>
+                </Link>
+                <Button
+                  style={{
+                    backgroundColor: 'red',
+                    borderColor: 'red',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    padding: '10px 22px',
+                    width: '75px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  className="m-2"
+                  onClick={deleteThisHouse}
+                >Delete
+                </Button>
+              </>
+            )
+            : ('')}
+        </div>
       </Card.Body>
     </Card>
   );
