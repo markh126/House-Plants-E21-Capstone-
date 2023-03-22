@@ -43,3 +43,14 @@ body {
 .navbar {
   background-color: rgb(216, 208, 208);
 }
+
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+.house-btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
