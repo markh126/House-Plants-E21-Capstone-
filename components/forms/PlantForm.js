@@ -17,7 +17,7 @@ const initialState = {
   light_requirement: '',
   propagation_instructions: '',
   notes: '',
-  watered: false,
+  watered: true,
 };
 
 export default function PlantForm({ obj, onUpdate, buttonTitle }) {
@@ -29,6 +29,14 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
   const { firebaseKey } = router.query;
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const time = new Date().toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: 'numeric',
+    minute: '2-digit',
+  });
 
   useEffect(() => {
     getHouses().then(setHouses);
@@ -81,6 +89,17 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
     <div>
       <Button
         onClick={handleShow}
+        style={{
+          backgroundColor: 'grey',
+          borderColor: 'grey',
+          borderRadius: '20px',
+          fontSize: '12px',
+          padding: '10px 22px',
+          width: '150px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
         {buttonTitle}
       </Button>
@@ -184,6 +203,7 @@ export default function PlantForm({ obj, onUpdate, buttonTitle }) {
                 setFormInput((prevState) => ({
                   ...prevState,
                   watered: e.target.checked,
+                  last_watered: time,
                 }));
               }}
             />
@@ -204,13 +224,13 @@ PlantForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
     scientific_name: PropTypes.string,
-    image: PropTypes.string,
     watering_frequency: PropTypes.string,
     light_requirement: PropTypes.string,
     propagation_instructions: PropTypes.string,
     notes: PropTypes.string,
     watered: PropTypes.bool,
     firebaseKey: PropTypes.string,
+    image: PropTypes.string,
   }),
   onUpdate: PropTypes.func,
   buttonTitle: PropTypes.string.isRequired,

@@ -26,8 +26,17 @@ function ViewHouse() {
       <Head>
         <title>{houseDetails.name}</title>
       </Head>
-      <PlantForm onUpdate={getAllThePlants} buttonTitle="New Plant" />
-      <UserHouseForm buttonTitle="Add a User" />
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '10px',
+        marginBottom: '10px',
+      }}
+      >
+        <PlantForm onUpdate={getAllThePlants} buttonTitle="New Plant" />
+        <UserHouseForm buttonTitle="Add a User" />
+      </div>
       <div className="d-flex flex-wrap">
         {houseDetails.plants?.map((plant) => (
           <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={getAllThePlants} />

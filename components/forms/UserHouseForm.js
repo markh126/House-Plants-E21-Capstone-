@@ -66,6 +66,14 @@ export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
     <div>
       <Button
         onClick={handleShow}
+        style={{
+          backgroundColor: 'green',
+          borderColor: 'green',
+          borderRadius: '20px',
+          fontSize: '12px',
+          padding: '10px 22px',
+          width: '150px',
+        }}
       >
         {buttonTitle}
       </Button>

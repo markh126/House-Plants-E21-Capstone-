@@ -52,8 +52,26 @@ export default function ViewPlants() {
             {(plantDetails.creator_id === user.uid)
               ? (
                 <>
-                  <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
-                  <Button onClick={deleteThisPlant}>Delete</Button>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginTop: '10px',
+                  }}
+                  >
+                    <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
+                    <Button
+                      style={{
+                        backgroundColor: 'red',
+                        borderColor: 'red',
+                        borderRadius: '20px',
+                        fontSize: '12px',
+                        padding: '10px 22px',
+                        width: '150px',
+                      }}
+                      onClick={deleteThisPlant}
+                    >Delete
+                    </Button>
+                  </div>
                 </>
               )
               : ('')}
@@ -67,7 +85,7 @@ export default function ViewPlants() {
             <p>Light Requirements: {plantDetails.light_requirement}</p>
             <p>Propagation Instructions: {plantDetails.propagation_instructions}</p>
             <hr />
-            <p>Last Watered: {plantDetails.watered}</p>
+            <p>Last Watered: {plantDetails.last_watered}</p>
             <p>Notes: {plantDetails.notes}</p>
           </div>
         </div>
