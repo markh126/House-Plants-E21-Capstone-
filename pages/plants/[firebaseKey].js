@@ -33,20 +33,22 @@ export default function ViewPlants() {
         <title>{plantDetails.name}</title>
       </Head>
 
-      <Alert show={show} variant="success">
-        <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShow(false)} variant="outline-success">
-            Close
-          </Button>
-        </div>
-      </Alert>
+      <div className="plant-alert mt-5 flex-wrap d-flex flex-column">
+        <Alert show={show} variant="success">
+          <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <Button onClick={() => setShow(false)} variant="outline-success">
+              Close
+            </Button>
+          </div>
+        </Alert>
+      </div>
 
       <div>
         <div className="mt-5 d-flex flex-wrap">
           <div className="d-flex flex-column">
-            <Image src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px' }} />
+            <Image className="plant-image" src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px', borderRadius: '25px' }} />
             {(plantDetails.creator_id === user.uid)
               ? (
                 <>

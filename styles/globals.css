@@ -28,3 +28,18 @@ body {
 .sign-in-btn {
   background-color: rgb(216, 208, 208);
 }
+
+.sign-in-btn:hover {
+  background-color: rgb(216, 208, 208);
+}
+
+.plant-alert {
+  position: fixed;
+  left: 20%;
+  height: 700px;
+  width: 700px;
+}
+
+.navbar {
+  background-color: rgb(216, 208, 208);
+}

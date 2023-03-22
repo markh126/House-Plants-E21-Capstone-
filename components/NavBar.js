@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { NavDropdown } from 'react-bootstrap';
+import { Navbar, NavDropdown } from 'react-bootstrap';
+import Image from 'next/image';
 import { signOut } from '../utils/auth';
 import { getHousesForHome } from '../api/houseData';
 import { useAuth } from '../utils/context/authContext';
-import SearchForm from './forms/SearchForm';
+import icon from '../images/icon.png';
 // import { HousesContext } from '../utils/context/housesContext';
 
-export default function NavBar() {
+export default function Nav() {
   // const { houses, setHouses } = useContext(HousesContext);
   const { user } = useAuth();
 
@@ -22,8 +23,11 @@ export default function NavBar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+      <Navbar className="navbar navbar-expand-md bg" style={{ marginBottom: '15px' }}>
         <div className="container-fluid">
+          <Navbar.Brand style={{ height: '40px', width: '35px' }}>
+            <Image className="nav-image" src={icon} />
+          </Navbar.Brand>
           <Link passHref href="/">
             <a className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
               House Plants
@@ -34,7 +38,7 @@ export default function NavBar() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul className="navbar-nav me-auto">
+            <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link passHref href="/">
                   <a className="nav-link">
@@ -50,11 +54,7 @@ export default function NavBar() {
                 </Link>
               </li>
 
-              <SearchForm />
-
               <NavDropdown
-                id="nav-dropdown"
-                className="toggle"
                 menuVariant="dark"
               >
                 <Link passHref href="/profile">
@@ -77,7 +77,7 @@ export default function NavBar() {
             </ul>
           </div>
         </div>
-      </nav>
+      </Navbar>
     </div>
   );
 }
