@@ -10,7 +10,7 @@ import { createUserHouse, getUserHousesByHouseId, updateUserHouse } from '../../
 export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
   const [houseUser, setHouseUser] = useState([]);
   const [visitedHouses, setVisitedHouses] = useState([]);
-  // const [visitedUserIds, setVisitedUserIds] = useState([]);
+  const [visitedUserIds, setVisitedUserIds] = useState([]);
   const [formInput, setFormInput] = useState({});
   const { user } = useAuth();
   const router = useRouter();
@@ -23,22 +23,19 @@ export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
     getUsers(user.uid).then(setHouseUser);
   };
 
-  // const getVisitedHomes = () => {
-  //   getUserHousesByHouseId(firebaseKey).then(() => setVisitedHouses);
-  //   // setVisitedUserIds(visitedHouses.map((h) => h.uid));
-  //   console.log(visitedHouses);
-  // };
-
   useEffect(() => {
     getUserHousesByHouseId(firebaseKey).then(setVisitedHouses);
   }, [firebaseKey]);
 
-  console.warn(visitedHouses);
-
   useEffect(() => {
     getUsersInHouses();
-    // getVisitedHomes();
   }, [user]);
+
+  useEffect(() => {
+    setVisitedUserIds(visitedHouses.map((h) => h.uid));
+  }, [visitedHouses]);
+
+  console.warn(visitedUserIds);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -96,7 +93,7 @@ export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
             >
               <option value="">Select A User</option>
               {
-            houseUser.filter((hu) => hu.uid !== user.uid && !visitedHouses.includes(hu.uid)).map((hu) => (
+            houseUser.filter((hu) => hu.uid !== user.uid && !visitedHouses.includes(hu.uid) && !visitedUserIds.includes(hu.uid)).map((hu) => (
               <option
                 key={hu.uid}
                 value={hu.uid}
