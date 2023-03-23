@@ -13,12 +13,12 @@ function Home() {
   const router = useRouter();
   const { firebaseKey } = router.query;
 
-  // const getAllTheHouses = () => {s
-  //   getHousesForHome(user.uid).then(setHouses);
-  // };
+  const getAllTheHouses = () => {
+    getHousesForHome(user.uid).then(setHouses);
+  };
 
   useEffect(() => {
-    getHousesForHome(user.uid).then(setHouses);
+    getAllTheHouses();
   }, [firebaseKey, user]);
 
   return (

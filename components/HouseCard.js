@@ -15,8 +15,8 @@ export default function HouseCard({ houseObj, onUpdate, isMine }) {
     <Card style={{ width: '18rem', borderRadius: '25px', marginTop: '50px' }}>
       <Card.Body>
         <Card.Title>
-          <Link href={`/houses/${houseObj.firebaseKey}`}>
-            {houseObj.name}
+          <Link passHref href={`/houses/${houseObj.firebaseKey}`}>
+            <a href={`/houses/${houseObj.firebaseKey}`}>{houseObj.name}</a>
           </Link>
         </Card.Title>
         <Card.Subtitle>{houseObj.city}</Card.Subtitle>
