@@ -91,7 +91,6 @@ const mergeHouseData = () => new Promise((resolve, reject) => {
         return { ...houses, count: houseRelationshipsArray.length };
       });
       resolve(allHousesInfoArray);
-      console.warn(allHousesInfoArray);
     }).catch((error) => reject(error));
 });
 

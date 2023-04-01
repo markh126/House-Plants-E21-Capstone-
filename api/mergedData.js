@@ -30,17 +30,12 @@ const housesWithUsers = () => new Promise((resolve, reject) => {
         const houseRelationshipsArray = userHousesJoin
           .filter((uh) => uh.house_id === house.firebaseKey);
 
-        // console.warn(houseRelationshipsArray);
-
         const userInfoArray = houseRelationshipsArray
           .map((houseRelationship) => users.find((user) => user.uid === houseRelationship.uid));
 
-        // console.warn(userInfoArray);
-
         return { ...house, users: userInfoArray };
       });
-      // resolve(allHousesInfoArray);
-      console.warn(allHousesInfoArray);
+      resolve(allHousesInfoArray);
     }).catch((error) => reject(error));
 });
 

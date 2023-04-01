@@ -13,7 +13,7 @@ export default function UserProfile() {
       <Head>
         <title>{user.displayName}</title>
       </Head>
-      <div style={{ marginTop: '35px' }}>
+      <div className="profile-font" style={{ marginTop: '35px' }}>
         <Image src={user.photoURL} alt="userURL" width="100px" height="100px" />
         <h1>Name: {user.displayName}</h1>
         <h2>Email: {user.email}</h2>
