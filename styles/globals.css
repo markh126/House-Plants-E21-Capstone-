@@ -36,8 +36,7 @@ body {
 .plant-alert {
   position: fixed;
   left: 20%;
-  height: 700px;
-  width: 700px;
+  outline: 1px black;
 }
 
 .navbar {

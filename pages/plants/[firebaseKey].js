@@ -73,7 +73,7 @@ export default function ViewPlants() {
 
       {(plantDetails.creator_id === user.uid)
         ? (
-          <div className="plant-alert mt-5 flex-wrap d-flex flex-column">
+          <div className="plant-alert">
             <Alert show={show} variant="success">
               <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
               <hr />
