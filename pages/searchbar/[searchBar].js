@@ -31,7 +31,21 @@ export default function SearchBar() {
         <title>Search Results</title>
       </Head>
       <div>
-        {(searchPlants.length === 0 ? ('No Search Results')
+        {(searchPlants.length === 0 ? (
+          <div className="d-flex justify-content-center">
+            <p style={{
+              backgroundColor: 'rgb(216, 208, 208)',
+              borderColor: 'grey',
+              borderRadius: '20px',
+              fontSize: '12px',
+              padding: '10px 22px',
+              width: '150px',
+            }}
+            >
+              No Search Results
+            </p>
+          </div>
+        )
           : searchPlants.map((plant) => <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={searchAllPlants} />))}
       </div>
     </>

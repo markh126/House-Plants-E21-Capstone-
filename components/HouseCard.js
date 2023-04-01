@@ -21,7 +21,11 @@ export default function HouseCard({ houseObj, onUpdate, isMine }) {
         </Card.Title>
         <Card.Subtitle>{houseObj.city}</Card.Subtitle>
         <Card.Body>{houseObj.description}</Card.Body>
-        <hr className="solid" />
+        {isMine
+          ? (
+            <hr className="solid" />
+          )
+          : ('')}
         <div
           className="house-btns"
         >

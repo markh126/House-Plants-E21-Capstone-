@@ -31,10 +31,12 @@ function VisitHouses() {
       <Head>
         <title>Visited Homes</title>
       </Head>
-      <div className="d-flex flex-wrap">
-        {currentUserHouse?.houses?.map((house) => (
-          <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} isMine={house.creator_id === user.uid} />
-        ))}
+      <div className="text-center d-flex flex-column justify-content-center align-content-center">
+        <div className="d-flex flex-wrap house-cards">
+          {currentUserHouse?.houses?.map((house) => (
+            <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} isMine={house.creator_id === user.uid} />
+          ))}
+        </div>
       </div>
     </>
   );
