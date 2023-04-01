@@ -31,7 +31,8 @@ export default function SearchBar() {
         <title>Search Results</title>
       </Head>
       <div>
-        {searchPlants.map((plant) => <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={searchAllPlants} />)}
+        {(searchPlants.length === 0 ? ('No Search Results')
+          : searchPlants.map((plant) => <PlantCard key={plant.firebaseKey} plantObj={plant} onUpdate={searchAllPlants} />))}
       </div>
     </>
   );
