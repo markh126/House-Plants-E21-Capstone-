@@ -17,7 +17,7 @@ const initialState = {
   light_requirement: '',
   propagation_instructions: '',
   notes: '',
-  watered: true,
+  watered: false,
 };
 
 export default function PlantForm({ obj, onUpdate, buttonTitle }) {

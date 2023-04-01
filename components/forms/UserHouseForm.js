@@ -35,8 +35,6 @@ export default function UserHouseForm({ obj, buttonTitle, onUpdate }) {
     setVisitedUserIds(visitedHouses.map((h) => h.uid));
   }, [visitedHouses]);
 
-  console.warn(visitedUserIds);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({

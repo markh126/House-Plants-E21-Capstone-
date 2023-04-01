@@ -18,8 +18,8 @@ function Home() {
   };
 
   useEffect(() => {
-    getAllTheHouses();
-  }, [firebaseKey, user]);
+    getAllTheHouses(user.uid);
+  }, [user, firebaseKey]);
 
   return (
     <>
@@ -29,10 +29,12 @@ function Home() {
 
       <SearchForm />
 
-      <div className="d-flex flex-wrap">
-        {houses.map((house) => (
-          <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getHousesForHome} isMine={house.creator_id === user.uid} />
-        ))}
+      <div className="text-center d-flex flex-column justify-content-center align-content-center">
+        <div className="d-flex flex-wrap house-cards">
+          {houses.map((house) => (
+            <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} isMine={house.creator_id === user.uid} />
+          ))}
+        </div>
       </div>
     </>
   );

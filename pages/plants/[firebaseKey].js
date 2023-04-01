@@ -33,48 +33,66 @@ export default function ViewPlants() {
         <title>{plantDetails.name}</title>
       </Head>
 
-      <div className="plant-alert mt-5 flex-wrap d-flex flex-column">
-        <Alert show={show} variant="success">
-          <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button onClick={() => setShow(false)} variant="outline-success">
-              Close
-            </Button>
-          </div>
-        </Alert>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gridGap: '12px',
+      }}
+      >
+        {(plantDetails.creator_id === user.uid)
+          ? (
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginTop: '10px',
+              gridGap: '12px',
+            }}
+            >
+              <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
+
+              <div>
+                <Button
+                  style={{
+                    backgroundColor: 'red',
+                    borderColor: 'red',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    padding: '10px 22px',
+                    width: '150px',
+                  }}
+                  onClick={deleteThisPlant}
+                >Delete
+                </Button>
+              </div>
+
+            </div>
+
+          )
+          : ('')}
       </div>
+
+      {(plantDetails.creator_id === user.uid)
+        ? (
+          <div className="plant-alert mt-5 flex-wrap d-flex flex-column">
+            <Alert show={show} variant="success">
+              <Alert.Heading>Have you remembered to water this plant?</Alert.Heading>
+              <hr />
+              <div className="d-flex justify-content-end">
+                <Button onClick={() => setShow(false)} variant="outline-success">
+                  Close
+                </Button>
+              </div>
+            </Alert>
+          </div>
+        )
+        : ('')}
 
       <div>
         <div className="mt-5 d-flex flex-wrap">
           <div className="d-flex flex-column">
             <Image className="plant-image" src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px', borderRadius: '25px' }} />
-            {(plantDetails.creator_id === user.uid)
-              ? (
-                <>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    marginTop: '10px',
-                  }}
-                  >
-                    <PlantForm buttonTitle="Edit" obj={plantDetails} onUpdate={viewThePlant} />
-                    <Button
-                      style={{
-                        backgroundColor: 'red',
-                        borderColor: 'red',
-                        borderRadius: '20px',
-                        fontSize: '12px',
-                        padding: '10px 22px',
-                        width: '150px',
-                      }}
-                      onClick={deleteThisPlant}
-                    >Delete
-                    </Button>
-                  </div>
-                </>
-              )
-              : ('')}
           </div>
           <div className="text-white ms-5 details">
             <h2>Name: {plantDetails.name}

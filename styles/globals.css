@@ -54,3 +54,17 @@ hr.solid {
   align-items: center;
   justify-content: center;
 }
+
+.profile-font {
+  color: rgb(216, 208, 208);
+}
+
+.house-cards {
+  box-sizing: border-box;
+  grid-gap: 12px;
+}
+
+.plant-cards {
+  box-sizing: border-box;
+  grid-gap: 12px;
+}
