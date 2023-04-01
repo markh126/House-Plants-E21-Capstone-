@@ -12,7 +12,7 @@ export default function HouseCard({ houseObj, onUpdate, isMine }) {
   };
 
   return (
-    <Card style={{ width: '18rem', borderRadius: '25px', marginTop: '50px' }}>
+    <Card className="house-card" style={{ width: '18rem', borderRadius: '0px', marginTop: '50px' }}>
       <Card.Body>
         <Card.Title>
           <Link passHref href={`/houses/${houseObj.firebaseKey}`}>
@@ -21,7 +21,11 @@ export default function HouseCard({ houseObj, onUpdate, isMine }) {
         </Card.Title>
         <Card.Subtitle>{houseObj.city}</Card.Subtitle>
         <Card.Body>{houseObj.description}</Card.Body>
-        <hr className="solid" />
+        {isMine
+          ? (
+            <hr className="solid" />
+          )
+          : ('')}
         <div
           className="house-btns"
         >

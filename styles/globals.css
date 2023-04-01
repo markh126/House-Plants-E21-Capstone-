@@ -42,6 +42,15 @@ body {
 
 .navbar {
   background-color: rgb(216, 208, 208);
+  box-shadow: 6px 6px #02631f;
+  border: 3px solid #014415;
+  padding: 20px;
+  margin: 20px;
+}
+
+.nav-item {
+  font-size: 16px;
+  color: #ff5757;
 }
 
 hr.solid {
@@ -67,4 +76,12 @@ hr.solid {
 .plant-cards {
   box-sizing: border-box;
   grid-gap: 12px;
+}
+
+.house-card {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.plant-card {
+  border: 1px solid rgb(0, 0, 0);
 }

@@ -37,7 +37,6 @@ export default function ViewPlants() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gridGap: '12px',
       }}
       >
         {(plantDetails.creator_id === user.uid)
@@ -46,7 +45,6 @@ export default function ViewPlants() {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              marginTop: '10px',
               gridGap: '12px',
             }}
             >
@@ -92,7 +90,14 @@ export default function ViewPlants() {
       <div>
         <div className="mt-5 d-flex flex-wrap">
           <div className="d-flex flex-column">
-            <Image className="plant-image" src={plantDetails.image} alt={plantDetails.name} style={{ width: '300px', borderRadius: '25px' }} />
+            <Image
+              className="plant-image"
+              src={plantDetails.image}
+              alt={plantDetails.name}
+              style={{
+                width: '300px', borderRadius: '0px', border: '3px solid #014415', boxShadow: '6px 6px rgb(216, 208, 208)',
+              }}
+            />
           </div>
           <div className="text-white ms-5 details">
             <h2>Name: {plantDetails.name}

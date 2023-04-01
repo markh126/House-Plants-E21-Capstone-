@@ -6,10 +6,10 @@ import Link from 'next/link';
 export default function PlantCard({ plantObj }) {
   return (
     <div className="plant-card">
-      <Card className="content" style={{ width: '300px', textAlign: 'center' }}>
+      <Card className="content" style={{ borderRadius: '0px', width: '300px', textAlign: 'center' }}>
         <Card.Body className="front">
-          <Card.Img src={plantObj.image} style={{ borderRadius: '10px', width: '16rem', height: '20rem' }} />
-          <Card.Title>
+          <Card.Img src={plantObj.image} style={{ borderRadius: '0px', objectFit: 'cover' }} />
+          <Card.Title style={{ marginTop: '15px', marginBottom: '0px' }}>
             <Link href={`/plants/${plantObj.firebaseKey}`}>{plantObj.name}</Link>
           </Card.Title>
         </Card.Body>
