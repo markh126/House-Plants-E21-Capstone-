@@ -32,16 +32,8 @@ export default function SearchBar() {
       </Head>
       <div>
         {(searchPlants.length === 0 ? (
-          <div className="d-flex justify-content-center">
-            <p style={{
-              backgroundColor: 'rgb(216, 208, 208)',
-              borderColor: 'grey',
-              borderRadius: '20px',
-              fontSize: '12px',
-              padding: '10px 22px',
-              width: '150px',
-            }}
-            >
+          <div className="search-results d-flex justify-content-center">
+            <p style={{ display: 'flex', alignItems: 'center', marginTop: '15px' }}>
               No Search Results
             </p>
           </div>
