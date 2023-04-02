@@ -27,9 +27,11 @@ function Home() {
         <title>Home Page</title>
       </Head>
 
-      <SearchForm />
+      <div className="index-search">
+        <SearchForm />
+      </div>
 
-      <div className="text-center d-flex flex-column justify-content-center align-content-center">
+      <div className="index-houses text-center d-flex flex-column justify-content-center align-content-center">
         <div className="d-flex flex-wrap house-cards">
           {houses.map((house) => (
             <HouseCard key={house.firebaseKey} houseObj={house} onUpdate={getAllTheHouses} isMine={house.creator_id === user.uid} />
