@@ -6,7 +6,12 @@ import Link from 'next/link';
 export default function PlantCard({ plantObj }) {
   return (
     <div className="plantCard">
-      <Card className="content" style={{ borderRadius: '0px', width: '300px', textAlign: 'center' }}>
+      <Card
+        className="content"
+        style={{
+          border: '1px solid rgb(0, 0, 0)', borderRadius: '0px', width: '300px', textAlign: 'center',
+        }}
+      >
         <Card.Body className="front">
           <Card.Img src={plantObj.image} style={{ borderRadius: '0px', objectFit: 'cover' }} />
           <Card.Title style={{ marginTop: '15px', marginBottom: '0px' }}>

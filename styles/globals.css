@@ -88,10 +88,6 @@ hr.solid {
   border: 1px solid rgb(0, 0, 0);
 }
 
-.plantCard {
-  border: 1px solid rgb(0, 0, 0);
-}
-
 .search-results {
   position: absolute;
   top: 25%;

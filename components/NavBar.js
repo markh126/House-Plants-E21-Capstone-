@@ -37,7 +37,7 @@ export default function Nav() {
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div className="nav-drop collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link passHref href="/">
@@ -53,27 +53,28 @@ export default function Nav() {
                   </a>
                 </Link>
               </li>
-
-              <NavDropdown
-                menuVariant="dark"
-              >
-                <Link passHref href="/profile">
+              <div>
+                <NavDropdown
+                  menuVariant="dark"
+                >
+                  <Link passHref href="/profile">
+                    <NavDropdown.Item>
+                      Profile
+                    </NavDropdown.Item>
+                  </Link>
+                  <Link passHref href="/VisitHouses">
+                    <NavDropdown.Item>
+                      Visiting Houses
+                    </NavDropdown.Item>
+                  </Link>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item>
-                    Profile
+                    <button type="button" className="btn btn-danger" onClick={signOut}>
+                      Sign Out
+                    </button>
                   </NavDropdown.Item>
-                </Link>
-                <Link passHref href="/VisitHouses">
-                  <NavDropdown.Item>
-                    Visiting Houses
-                  </NavDropdown.Item>
-                </Link>
-                <NavDropdown.Divider />
-                <NavDropdown.Item>
-                  <button type="button" className="btn btn-danger" onClick={signOut}>
-                    Sign Out
-                  </button>
-                </NavDropdown.Item>
-              </NavDropdown>
+                </NavDropdown>
+              </div>
             </ul>
           </div>
         </div>
