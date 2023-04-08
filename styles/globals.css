@@ -82,6 +82,7 @@ hr.solid {
 .plant-cards {
   box-sizing: border-box;
   grid-gap: 12px;
+  margin-bottom: 15px;
 }
 
 .house-card {
